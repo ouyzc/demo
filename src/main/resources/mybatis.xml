@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--配置环境-->
+    <environments default="mysql">
+        <environment id="mysql">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <!--mysql8.0以上更改为com.mysql.cj.jdbc.Driver-->
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <!--mysql8.0以上更改为jdbc:mysql://localhost:3306/ssm?serverTimezone=GMT&amp;characterEncoding=utf-8&amp;useSSL=false xml中不允许出现;使用转义字符&amp; 如果使用 jdbc.profile 文件则不需要转义-->
+                <property name="url" value="jdbc:mysql://localhost:3306/ssm?characterEncoding=utf-8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="12345678"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <package name="cn.oyzc.dao"/>
+    </mappers>
+</configuration>
