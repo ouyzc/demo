@@ -10,17 +10,24 @@ import java.util.List;
 
 @Service("accountService")
 public class AccountServiceImpl implements AccountService {
-    @Autowired
+
     private AccountDao accountDao;
-    @Override
-    public List<Account> findAll() {
-        System.out.println("业务层：查询所有账户信息。。。");
-        List<Account> accounts = accountDao.findAll();
-        return accounts;
+
+    @Autowired
+    public void setAccountDao(AccountDao accountDao) {
+        this.accountDao = accountDao;
     }
 
     @Override
-    public void saveAccount(Account account) {
+    public List<Account> findAll() {
+        System.out.println("业务层：查询所有账户信息。。。");
+        return accountDao.findAll();
+    }
+
+    @Override
+    public int saveAccount(Account account) {
         System.out.println("业务层：保存账户信息。。。");
+        accountDao.saveAccount(account);
+        return Math.max(account.getId(), 0);
     }
 }

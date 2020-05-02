@@ -42,8 +42,8 @@ public class TestMybatis {
     @Test
     public void run2() throws IOException {
         Account account = new Account();
-        account.setName("李四");
-        account.setMoney(200.00);
+        account.setName("张四");
+        account.setMoney(300.00);
         //加载配置文件
         InputStream resourceAsStream = Resources.getResourceAsStream("mybatis.xml");
         //创建SqlSessionFactory对象
@@ -53,7 +53,8 @@ public class TestMybatis {
         //获取代理对象
         AccountDao dao = session.getMapper(AccountDao.class);
         //添加数据
-        dao.saveAccount(account);
+        int insertCount = dao.saveAccount(account);
+        System.out.println(account.getId());
         //提交事务
         session.commit();
         //关闭资源
